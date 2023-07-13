@@ -50,13 +50,6 @@ internal class Unit
     public Team team;
     public int x, y;
 
-    public void Draw(in Sprites sp)
-    {
-        sp.DrawSnapped(SpriteID, x, y, team switch
-        {
-            Team.White => Color.WHITE,
-            Team.Black => Color.GRAY,
-            _ => throw new InvalidEnumArgumentException(),
-        });
-    }
+    public void Draw(in Sprites sp) =>
+        sp.DrawCC2Snapped(SpriteID, x, y);
 }

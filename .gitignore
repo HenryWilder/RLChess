@@ -75,6 +75,8 @@ StyleCopReport.xml
 *.ilk
 *.meta
 *.obj
+# Keep wavefront .obj files
+!resources/*.obj
 *.iobj
 *.pch
 *.pdb

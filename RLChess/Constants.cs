@@ -35,7 +35,7 @@ class ChessConstants
     /// <summary>
     /// Scaling of the game (sprite-pixels to true pixels).
     /// </summary>
-    public const int OUTPUT_SCALE = 4;
+    public const int OUTPUT_SCALE = 6;
 
     /// <summary>
     /// True edge pixels on a tile.

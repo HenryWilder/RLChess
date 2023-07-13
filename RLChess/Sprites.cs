@@ -13,11 +13,18 @@ internal class Sprites
 {
     public Sprites()
     {
-        tex = new Texture2D[filenames.Length];
+        tex    = new Texture2D[filenames.Length];
         for (int i = 0; i < filenames.Length; ++i)
         {
-            tex[i] = Raylib.LoadTexture(filenames[i]);
+               tex[i] = Raylib.LoadTexture("resources/" + filenames[i] + ".png");
         }
+
+        //meshes = new Mesh[filenames.Length];
+        //for (int i = 0; i < filenames.Length; ++i)
+        //{
+        //    // filenames[0] + ".cc3asset";
+        //    meshes[i] = Raylib.GenMeshCube(10,10,10);
+        //}
     }
 
     ~Sprites()
@@ -25,12 +32,13 @@ internal class Sprites
         for (int i = 0; i < tex.Length; ++i)
         {
             Raylib.UnloadTexture(tex[i]);
+            //Raylib.UnloadMesh(ref meshes[i]);
         }
     }
 
     public enum SpriteID
     {
-        Pawn = 0,
+        Pawn,
         Rook,
         Knight,
         Bishop,
@@ -38,23 +46,26 @@ internal class Sprites
         King,
     }
 
-    public enum UnitSpriteID
+    public enum SpriteStyle
     {
-        Pawn   = SpriteID.Pawn,
-        Rook   = SpriteID.Rook,
-        Knight = SpriteID.Knight,
-        Bishop = SpriteID.Bishop,
-        Queen  = SpriteID.Queen,
-        King   = SpriteID.King,
+        /// <summary>
+        /// CChess 2 - Raster
+        /// </summary>
+        CC2,
+
+        /// <summary>
+        /// CChess 3 - Vector
+        /// </summary>
+        CC3,
     }
 
     readonly string[] filenames = {
-          "pawn.png",
-          "rook.png",
-        "knight.png",
-        "bishop.png",
-         "queen.png",
-          "king.png",
+        "pawn",
+        "rook",
+        "knight",
+        "bishop",
+        "queen",
+        "king",
     };
 
     /// <summary>
@@ -62,14 +73,40 @@ internal class Sprites
     /// </summary>
     readonly private Texture2D[] tex;
 
-    Texture2D this[SpriteID id] => tex[(int)id];
+    /// <summary>
+    /// Textures are grayscale and can be tinted
+    /// </summary>
+    readonly private Mesh[] meshes;
 
-    public void Draw(SpriteID id, Vector2 position, Color tint) =>
-        Raylib.DrawTextureEx(this[id], position, 0.0f, ChessConstants.OUTPUT_SCALE, tint);
+    /// <summary>
+    /// Draws the CChess2 (raster) version of a sprite.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="position"></param>
+    public void DrawCC2(SpriteID id, Vector2 position) =>
+        Raylib.DrawTextureEx(tex[(int)id], position, 0.0f, ChessConstants.OUTPUT_SCALE, Color.WHITE);
 
     /// <summary>
     /// Snaps sprite to the tile.
     /// </summary>
-    public void DrawSnapped(SpriteID id, int x, int y, Color tint) =>
-        Draw(id, Board.TileToOutputPixel(x, y), tint);
+    public void DrawCC2Snapped(SpriteID id, int x, int y) =>
+        DrawCC2(id, Board.TileToOutputPixel(x, y));
+
+    /// <summary>
+    /// Draws the CChess3 (vector) version of a sprite.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="position"></param>
+    public void DrawCC3(SpriteID id, Vector2 position)
+    {
+        Material mat = Raylib.LoadMaterialDefault();
+        Raylib.DrawMesh(meshes[(int)id], mat, Raymath.MatrixTranslate(position.X, position.Y, 0.0f));
+        Raylib.UnloadMaterial(mat);
+    }
+
+    /// <summary>
+    /// Snaps sprite to the tile.
+    /// </summary>
+    public void DrawCC3Snapped(SpriteID id, int x, int y) =>
+        DrawCC3(id, Board.TileToOutputPixel(x, y));
 }
