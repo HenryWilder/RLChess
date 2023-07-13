@@ -8,7 +8,9 @@ in vec4 vertexColor;
 
 // Input uniform values
 uniform mat4 mvp;
+uniform int id;
 uniform float time;
+uniform float intensity;
 
 const float freq = 5.0;
 const float wavelen = 1.0f / freq;
@@ -32,11 +34,11 @@ void main()
     float timeA = floor(time * freq) / freq;
     float timeB =  ceil(time * freq) / freq;
 
-    vec2 seedA = vec2(timeA + gl_VertexID);
-    vec2 seedB = vec2(timeB + gl_VertexID);
-     
-    vec3 offsetA = vec3(rand(seedA), rand(seedA + 0.1), rand(seedA + 0.2)) * 1.0;
-    vec3 offsetB = vec3(rand(seedB), rand(seedB + 0.1), rand(seedB + 0.2)) * 1.0;
+    vec2 seedA = vec2(timeA + gl_VertexID + id);
+    vec2 seedB = vec2(timeB + gl_VertexID + id);
+
+    vec3 offsetA = vec3(rand(seedA) - 0.5, rand(seedA + 0.1) - 0.5, 0.0) * intensity * 2;
+    vec3 offsetB = vec3(rand(seedB) - 0.5, rand(seedB + 0.1) - 0.5, 0.0) * intensity * 2;
 
     float t = (time - timeA) / wavelen;
     vec3 offset = mix(offsetA, offsetB, t);

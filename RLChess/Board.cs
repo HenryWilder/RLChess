@@ -79,37 +79,4 @@ internal class Board
             }
         }
     }
-
-    public void DrawUnits(in Sprites sp, SpriteStyle style)
-    {
-        switch (style)
-        {
-            case SpriteStyle.CC2:
-            {
-                Color[] tints = new Color[] { Color.WHITE, Color.GRAY };
-
-                foreach (Unit unit in units)
-                {
-                    sp.DrawCC2Snapped(unit.SpriteID, unit.x, unit.y, tints[(int)unit.team]);
-                }
-            } break;
-
-            case SpriteStyle.CC3:
-            {
-                sp.BeginModeCC3();
-
-                Color[] tints = new Color[] { Color.BLUE, Color.RED };
-
-                foreach (Unit unit in units)
-                {
-                    sp.DrawCC3Snapped(unit.SpriteID, unit.x, unit.y, tints[(int)unit.team]);
-                }
-
-                sp.EndModeCC3();
-            } break;
-
-            default:
-                throw new NotImplementedException();
-        }
-    }
 }
