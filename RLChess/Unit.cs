@@ -91,10 +91,10 @@ internal class Unit
     public void DrawCC2(Vector2 pixelOffset)
     {
         Vector2 position = new (
-            +(x * ChessConstants.NUM_OUTPUT_TILE_SIDE_PIXELS + pixelOffset.X),
-            -(y * ChessConstants.NUM_OUTPUT_TILE_SIDE_PIXELS + pixelOffset.Y));
+            (x * ChessConstants.NUM_OUTPUT_TILE_SIDE_PIXELS + pixelOffset.X),
+            (y * ChessConstants.NUM_OUTPUT_TILE_SIDE_PIXELS + pixelOffset.Y));
 
-        Raylib.DrawTextureEx(cc2Sprite, position, 0.0f, MODEL_SCALE, cc2Tints[(int)team]);
+        Raylib.DrawTextureEx(cc2Sprite, position, 0.0f, ChessConstants.OUTPUT_SCALE, cc2Tints[(int)team]);
     }
 
     readonly static Color[] cc3Tints = new Color[] { Color.BLUE, Color.RED };

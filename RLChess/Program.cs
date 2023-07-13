@@ -13,7 +13,7 @@ class Program
         Raylib.InitWindow(NUM_OUTPUT_BOARD_SIDE_PIXELS, NUM_OUTPUT_BOARD_SIDE_PIXELS, "Raylib Chess");
 
         Board board = new();
-        SpriteStyle spriteStyle = SpriteStyle.CC3;
+        SpriteStyle spriteStyle = SpriteStyle.CC2;
 
         Camera3D cam = new(
             position: Vector3.UnitZ * 100,
