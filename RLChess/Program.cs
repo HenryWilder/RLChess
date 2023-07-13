@@ -118,6 +118,8 @@ class Program
 
             Raylib.EndDrawing();
         }
+
+        board.Unload();
     }
 
     public static void Main()

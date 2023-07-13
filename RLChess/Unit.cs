@@ -51,15 +51,28 @@ internal class Unit
         {
             Raylib.SetMaterialShader(ref cc3Model, i, ref cc3Shader);
         }
+        Console.WriteLine(type + " at " + x + "," + y + " loaded.");
+        isLoaded = true;
+    }
+
+    public void Unload()
+    {
+        if (isLoaded)
+        {
+            Raylib.UnloadTexture(cc2Sprite);
+            Raylib.UnloadModel(cc3Model);
+            Raylib.UnloadShader(cc3Shader);
+            Console.WriteLine(type + " at " + x + "," + y + " unloaded.");
+            isLoaded = false;
+        }
     }
 
     ~Unit()
     {
-        Raylib.UnloadTexture(cc2Sprite);
-        Raylib.UnloadModel(cc3Model);
-        Raylib.UnloadShader(cc3Shader);
+        Unload();
     }
 
+    private bool isLoaded = false;
     public Type type;
     public Team team;
     public int x, y;

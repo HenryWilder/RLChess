@@ -77,4 +77,12 @@ internal class Board
             }
         }
     }
+
+    public void Unload()
+    {
+        foreach (Unit unit in units)
+        {
+            unit.Unload();
+        }
+    }
 }
