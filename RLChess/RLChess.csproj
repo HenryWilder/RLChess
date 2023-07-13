@@ -9,15 +9,42 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="resources\bishop.obj" />
     <None Remove="resources\bishop.png" />
     <None Remove="resources\displacement.vert" />
+    <None Remove="resources\king.obj" />
     <None Remove="resources\king.png" />
+    <None Remove="resources\knight.obj" />
     <None Remove="resources\knight.png" />
-    <None Remove="resources\pawn.mtl" />
     <None Remove="resources\pawn.obj" />
     <None Remove="resources\pawn.png" />
+    <None Remove="resources\queen.obj" />
     <None Remove="resources\queen.png" />
+    <None Remove="resources\rook.obj" />
     <None Remove="resources\rook.png" />
+    <None Remove="resources\shading.frag" />
+    <None Remove="resources\unit.mtl" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="resources\bishop.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\king.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\knight.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\queen.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\rook.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\shading.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +65,7 @@
     <EmbeddedResource Include="resources\knight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="resources\pawn.mtl">
+    <EmbeddedResource Include="resources\unit.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="resources\pawn.obj">

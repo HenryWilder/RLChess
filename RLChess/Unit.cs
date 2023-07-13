@@ -49,7 +49,4 @@ internal class Unit
     public Type type;
     public Team team;
     public int x, y;
-
-    public void Draw(in Sprites sp) =>
-        sp.DrawCC2Snapped(SpriteID, x, y);
 }
