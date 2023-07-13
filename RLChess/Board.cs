@@ -77,17 +77,4 @@ internal class Board
             }
         }
     }
-
-    public static void DrawBackground()
-    {
-        Raylib.DrawRectangle(0, 0, ChessConstants.NUM_OUTPUT_BOARD_SIDE_PIXELS, ChessConstants.NUM_OUTPUT_BOARD_SIDE_PIXELS, boardBlack);
-        
-        for (int row = 0; row <= ChessConstants.NUM_BOARD_SIDE_TILES; ++row)
-        {
-            for (int col = row & 1; col <= ChessConstants.NUM_BOARD_SIDE_TILES; col += 2)
-            {
-                Raylib.DrawRectangleRec(TileRect(col, row), boardWhite);
-            }
-        }
-    }
 }

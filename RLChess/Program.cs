@@ -50,10 +50,35 @@ class Program
 
             Raylib.ClearBackground(Color.BLACK);
 
-            Board.DrawBackground();
+            // Background
+            {
+                Color boardBlack = spriteStyle switch {
+                    SpriteStyle.CC2 => Board.boardBlack,
+                    SpriteStyle.CC3 => Color.BLACK,
+                    _ => throw new NotImplementedException(),
+                };
 
+                Color boardWhite = spriteStyle switch {
+                    SpriteStyle.CC2 => Board.boardWhite,
+                    SpriteStyle.CC3 => Color.WHITE,
+                    _ => throw new NotImplementedException(),
+                };
+
+                Raylib.DrawRectangle(0, 0, NUM_OUTPUT_BOARD_SIDE_PIXELS, NUM_OUTPUT_BOARD_SIDE_PIXELS, boardBlack);
+
+                for (int row = 0; row <= NUM_BOARD_SIDE_TILES; ++row)
+                {
+                    for (int col = row & 1; col <= NUM_BOARD_SIDE_TILES; col += 2)
+                    {
+                        Raylib.DrawRectangleRec(Board.TileRect(col, row), boardWhite);
+                    }
+                }
+            }
+
+            // Hovered tile
             Raylib.DrawRectangleRec(Board.TileRect(hoveredTileX, hoveredTileY), Board.boardHover);
 
+            // Units
             switch (spriteStyle)
             {
                 case SpriteStyle.CC2:
@@ -82,6 +107,7 @@ class Program
                     throw new NotImplementedException();
             }
 
+            // Loading screen fadein
             if (fadeIn)
             {
                 float t = (float)(1.0 - (Raylib.GetTime() - finishedLoading));
