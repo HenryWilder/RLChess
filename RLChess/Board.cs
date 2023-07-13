@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 using Raylib_cs;
 
-using static RLChess.Sprites;
-
 namespace RLChess;
 
 internal class Board
@@ -67,7 +65,7 @@ internal class Board
         }
     }
 
-    public void DrawBackground()
+    public static void DrawBackground()
     {
         Raylib.DrawRectangle(0, 0, ChessConstants.NUM_OUTPUT_BOARD_SIDE_PIXELS, ChessConstants.NUM_OUTPUT_BOARD_SIDE_PIXELS, boardBlack);
         

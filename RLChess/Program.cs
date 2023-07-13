@@ -4,11 +4,16 @@ using Raylib_cs;
 
 using RLChess;
 using static RLChess.ChessConstants;
-using static RLChess.Sprites;
+
+enum SpriteStyle
+{
+    CC2, // Raster
+    CC3, // Vector
+}
 
 class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         Raylib.InitWindow(NUM_OUTPUT_BOARD_SIDE_PIXELS, NUM_OUTPUT_BOARD_SIDE_PIXELS, "Raylib Chess");
 
@@ -31,7 +36,7 @@ class Program
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.BLACK);
 
-            board.DrawBackground();
+            Board.DrawBackground();
 
             Raylib.DrawRectangleRec(Board.TileRect(hoveredTileX, hoveredTileY), Board.boardHover);
 

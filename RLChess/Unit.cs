@@ -28,17 +28,6 @@ internal class Unit
         King,
     }
 
-    public Sprites.SpriteID SpriteID => type switch
-    {
-        Type.Pawn   => Sprites.SpriteID.Pawn,
-        Type.Rook   => Sprites.SpriteID.Rook,
-        Type.Knight => Sprites.SpriteID.Knight,
-        Type.Bishop => Sprites.SpriteID.Bishop,
-        Type.Queen  => Sprites.SpriteID.Queen,
-        Type.King   => Sprites.SpriteID.King,
-        _ => throw new InvalidEnumArgumentException(),
-    };
-
     static int currentId = 0;
 
     public Unit(int x, int y, Type type, Team team)
