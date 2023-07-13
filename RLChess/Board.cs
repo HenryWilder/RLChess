@@ -51,6 +51,9 @@ internal class Board
 
         units = new Unit[ChessConstants.NUM_BOARD_SIDE_TILES * 4];
 
+        int totalAssets = ChessConstants.NUM_BOARD_SIDE_TILES * 4;
+        int loadedAssets = 0;
+
         for (int col = 0; col < ChessConstants.NUM_BOARD_SIDE_TILES; ++col)
         {
             for (int i = 0; i < 4; ++i)
@@ -61,6 +64,16 @@ internal class Board
                 Unit.Team team = (i < 2) ? Unit.Team.White : Unit.Team.Black;
 
                 units[index] = new(col, row, type, team);
+
+                ++loadedAssets;
+
+                float percentLoaded = MathF.Floor(((float)loadedAssets / totalAssets) * 100.0f);
+
+                Raylib.BeginDrawing();
+                Raylib.ClearBackground(Color.BLACK);
+                Raylib.DrawRectangle(0, 0, (int)((percentLoaded / 100.0f) * ChessConstants.NUM_OUTPUT_BOARD_SIDE_PIXELS), 20, Color.BLUE);
+                Raylib.DrawText("Loading assets... " + percentLoaded + "%", 0, 0, 20, Color.WHITE);
+                Raylib.EndDrawing();
             }
         }
     }
